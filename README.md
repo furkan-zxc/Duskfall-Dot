@@ -1,4 +1,4 @@
-# Hyprland Dotfiles (Beta)
+# Duskfall Dotfiles (Beta)
 
 You can get Hyprland ready for use by copying/cloning these configuration folders directly into your `~/.config/` directory.
 
