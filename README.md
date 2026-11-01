@@ -2,7 +2,7 @@
 
 You can get Hyprland ready for use by copying/cloning these configuration folders directly into your `~/.config/` directory.
 
-This setup is designed to be tailored to your specific needs while embracing a minimalist philosophy—so don't be afraid to edit the code!
+This setup is designed to be tailored to your specific needs while embracing a minimalist style so don't be afraid to edit the code!
 
 ---
 
