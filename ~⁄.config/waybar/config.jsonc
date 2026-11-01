@@ -1,0 +1,88 @@
+{
+    "layer": "top",
+    "height": 28,
+    "modules-left": ["hyprland/workspaces", "custom/special"],
+    "modules-center": ["hyprland/window"],
+    "modules-right": ["tray", "pulseaudio", "backlight", "network", "bluetooth", "cpu", "temperature", "battery", "clock"],
+
+    "custom/special": {
+    "exec": "~/.local/bin/special-watch.sh",
+    "return-type": "json",
+    "format": "{}"
+    },
+    "hyprland/workspaces": {
+        "format": "{id} {icon}",
+        "format-icons": { "active": "●", "default": "○", "empty": "○" },
+        "on-click": "activate",
+        "all-outputs": true,
+        "persistent-workspaces": { "*": [1] }
+    },
+    "hyprland/window": {
+        "max-length": 60,
+        "tooltip": false
+    },
+    "tray": { "spacing": 8 },
+    "pulseaudio": {
+        "format": "\uf028 {volume}%",
+        "format-muted": "\uf026 ",
+        "scroll-step": 5,
+        "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+        "on-click-right": "pavucontrol"
+    },
+    "backlight": {
+        "format": "\uf185 {percent}%",
+        "on-scroll-up": "brightnessctl set 5%+",
+        "on-scroll-down": "brightnessctl set 5%-"
+    },
+    "network": {
+    "format-wifi": "\uf1eb on",
+    "format-ethernet": "\uf0e8 bağlı",
+    "format-disconnected": "\uf1eb off",
+    "format-disabled": "\uf1eb off",
+    "tooltip-format-wifi": "{essid} ({signalStrength}%)",
+    "tooltip-format": "{ifname}: {ipaddr}",
+    "on-click": "nm-connection-editor",
+    "on-click-right": "sh -c 'if nmcli radio wifi | grep -q enabled; then nmcli radio wifi off; else nmcli radio wifi on; fi'"
+    },
+    "bluetooth": {
+        "format": "\uf293 {status}",
+        "format-on": "\uf293 on",
+        "format-off": "\uf293 off",
+        "format-disabled": "\uf293 off",
+        "format-connected": "\uf293 {device_alias}",
+        "on-click": "blueman-manager",
+        "on-click-right": "sh -c 'rfkill unblock bluetooth; if bluetoothctl show | grep -q \"Powered: yes\"; then bluetoothctl power off; else bluetoothctl power on; fi'"
+    },
+    "cpu": { "format": "\uf2db {usage}%" },
+    "memory": { "format": "\uf1c0 {percentage}%" },
+    "temperature": {
+        "critical-threshold": 80,
+        "format": "\uf2c9 {temperatureC}°C"
+    },
+    "battery": {
+        "states": { "warning": 30, "critical": 15 },
+        "format": "{icon} {capacity}%",
+        "format-charging": "\uf0e7 {capacity}%",
+        "format-plugged": "\uf1e6 {capacity}%",
+        "format-icons": ["\uf244", "\uf243", "\uf242", "\uf241", "\uf240"]
+    },
+    "clock": {
+    "format": "\uf017 {:%d %b %H:%M}",
+    "tooltip-format": "<tt>{calendar}</tt>",
+    "calendar": {
+        "mode": "month",
+        "weeks-pos": "",
+        "on-scroll": 1,
+        "format": {
+            "months": "<span color='#f5ecd7'><b>{}</b></span>",
+            "days": "<span color='#cfc8b8'>{}</span>",
+            "weekdays": "<span color='#8a8a8a'>{}</span>",
+            "today": "<span color='#e0a030'><b><u>{}</u></b></span>"
+        }
+    },
+    "actions": {
+        "on-scroll-up": "shift_up",
+        "on-scroll-down": "shift_down"
+      }
+    },
+}
