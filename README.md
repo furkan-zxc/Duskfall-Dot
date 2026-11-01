@@ -7,6 +7,7 @@ This setup is designed to be tailored to your specific needs while embracing a m
 ---
 
 > [!WARNING]
+> It is recommended to have a KDE Plasma environment already present on the system.
 > **ATTENTION**
 > These dotfiles have not been fully tested on other environments. You assume full responsibility for using or modifying them.
 
@@ -23,7 +24,7 @@ This setup is designed to be tailored to your specific needs while embracing a m
 
 ## Quick Start
 ```bash
-git clone [https://github.com/USERNAME/dotfiles.git](https://github.com/USERNAME/dotfiles.git)
+git clone [https://github.com/furkan-zxc/dotfiles.git](https://github.com/furkan-zxc/dotfiles.git)
 cd dotfiles
 # Copy the config files to ~/.config/
 cp -r hypr waybar rofi kitty dunst wlogout waypaper ~/.config/
