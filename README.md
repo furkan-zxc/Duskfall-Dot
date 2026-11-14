@@ -67,3 +67,7 @@ chmod +x ~/.local/bin/*.sh
 ## Customization
 
 All configs live in `~/.config/`. Edit them directly, and reload Hyprland (`hyprctl reload`) to apply changes.
+
+## License
+
+MIT. Third-party files (themes, wallpapers, etc.) keep their original licenses.
