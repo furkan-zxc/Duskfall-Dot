@@ -278,7 +278,7 @@ hl.bind("SUPER + ESCAPE", hl.dsp.exec_cmd("pkill wlogout || wlogout"))
 hl.bind("SUPER + W",      hl.dsp.exec_cmd(browser))
 
 -- screenshot bind
-hl.bind("Print",             hl.dsp.exec_cmd("/home/furkan/.local/bin/screenshot.sh area"))
+hl.bind("Print",             hl.dsp.exec_cmd("$HOME/.local/bin/screenshot.sh area"))
 
 -- screen recorder bind
 hl.bind("SUPER + SHIFT + R", hl.dsp.exec_cmd("~/.local/bin/record.sh full"))
