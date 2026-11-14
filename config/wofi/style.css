@@ -1,0 +1,56 @@
+window {
+    margin: 0px;
+    background-color: #121212; /* Genel arka plan koyu gri */
+    border-radius: 0px;
+    border: 2px solid #555555;
+    color: #e0def4;
+    font-family: 'Monofur Nerd Font';
+    font-size: 16px;
+}
+
+#input {
+margin: 5px;
+border-radius: 0px;
+border: none;
+color: #e0def4;
+background-color: #1e1e1e; /* Arama kutusu koyu gri */
+}
+
+#inner-box {
+margin: 5px;
+border: none;
+background-color: #121212;
+color: #e0def4;
+border-radius: 0px;
+}
+
+#outer-box {
+margin: 15px;
+border: none;
+background-color: #121212;
+}
+
+#scroll {
+margin: 0px;
+border: none;
+}
+
+#text {
+margin: 5px;
+border: none;
+color: #cccccc; /* Normal metinler için açık gri/beyaz ton */
+}
+
+#entry:selected {
+background-color: #e0def4; /* Seçili öğe arka planı açık gri */
+color: #121212;            /* Seçili öğe yazı rengi koyu */
+border-radius: 0px;
+outline: none;
+}
+
+#entry:selected * {
+background-color: #e0def4; /* Seçili öğenin içindeki elemanlar açık gri */
+color: #121212;
+border-radius: 0px;
+outline: none;
+}
