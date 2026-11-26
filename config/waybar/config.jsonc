@@ -3,7 +3,7 @@
     "height": 28,
     "modules-left": ["hyprland/workspaces", "custom/cava", "custom/special"],
     "modules-center": ["hyprland/window"],
-    "modules-right": ["custom/record", "tray", "pulseaudio", "backlight", "network", "bluetooth", "cpu", "temperature", "battery", "clock"],
+    "modules-right": ["custom/record", "tray", "pulseaudio", "backlight", "bluetooth", "cpu", "temperature", "battery", "clock"],
 
     "custom/cava": {
     "exec": "/home/furkan/.local/bin/cava-waybar.sh",
@@ -61,8 +61,8 @@
         "format-off": "\uf293 off",
         "format-disabled": "\uf293 off",
         "format-connected": "\uf293 {device_alias}",
-        "on-click": "blueman-manager",
-        "on-click-right": "sh -c 'rfkill unblock bluetooth; if bluetoothctl show | grep -q \"Powered: yes\"; then bluetoothctl power off; else bluetoothctl power on; fi'"
+        "on-click": "$HOME/.local/bin/bt-toggle.sh",
+        "on-click-right": "blueman-manager"
     },
     "cpu": { "format": "\uf2db {usage}%" },
     "memory": { "format": "\uf1c0 {percentage}%" },

@@ -1,4 +1,4 @@
-prompt=search
+prompt=Search
 show=drun
 matching=multi-contains
 insensitive=true
