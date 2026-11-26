@@ -1,17 +1,9 @@
 
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
---                duskfall Hyprland Dot                  --
---                 welcome to opensuse tumbleweed        --
+--                Duskfall Hyprland Dot                  --
+--                 welcome to openSUSE Tumbleweed        --
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 
-
-------------------
-----  NVIDIA  ----
-------------------
-
--- hl.env("__GLX_VENDOR_LIBRARY_NAME", "nvidia")
--- hl.env("LIBVA_DRIVER_NAME", "nvidia")
--- hl.env("__NV_PRIME_RENDER_OFFLOAD", "1")
 
 ------------------
 ---- MONITORS ----
@@ -19,9 +11,9 @@
 
 hl.monitor({
     output   = "",
-    mode     = "preferred",
+    mode     = "auto",
     position = "auto",
-    scale    = "auto",
+    scale    = "preferred",
 })
 
 
@@ -41,20 +33,20 @@ local browser     = "firefox"
 -------------------
 
  hl.on("hyprland.start", function () 
---   hl.exec_cmd(terminal)
---   hl.exec_cmd("nm-applet")
+   hl.exec_cmd("nm-applet")
  hl.exec_cmd("hyprpaper")
+ hl.exec_cmd("swww-daemon")
  hl.exec_cmd("waypaper --restore")
  hl.exec_cmd("sh -c 'until [ -S \"$XDG_RUNTIME_DIR/pipewire-0\" ]; do sleep 0.5; done; waybar'")
  hl.exec_cmd("dunst")
  hl.exec_cmd("/usr/lib/xdg-desktop-portal-gtk")
  hl.exec_cmd("hypridle")
- hl.exec_cmd("~/.local/bin/battery-watch.sh")
- hl.exec_cmd("~/.local/bin/crash-watch.sh")
+ hl.exec_cmd("$HOME/.local/bin/battery-watch.sh")
+ hl.exec_cmd("$HOME/.local/bin/crash-watch.sh")
  hl.exec_cmd("hyprctl setcursor Adwaita 24")
  hl.exec_cmd("wl-paste --type text --watch cliphist store")
  hl.exec_cmd("wl-paste --type image --watch cliphist store")
- end)
+end)
 
 hl.on("hyprland.shutdown", function ()
   hl.exec_cmd("pkill -f 'crash-watch.sh|battery-watch.sh|special-watch.sh'")
@@ -65,20 +57,18 @@ end)
 ---- ENVIRONMENT VARIABLES ----
 -------------------------------
 
+-- See https://wiki.hypr.land/Configuring/Advanced-and-Cool/Environment-variables/
 
 hl.env("XCURSOR_THEME", "Adwaita")
 hl.env("XCURSOR_SIZE", "24")
 hl.env("HYPRCURSOR_SIZE", "22")
 hl.env("QT_QPA_PLATFORMTHEME", "kde")
 hl.env("XDG_MENU_PREFIX", "plasma-")
+hl.env("GSK_RENDERER", "gl")
 
 -----------------------
 ----- PERMISSIONS -----
 -----------------------
-
--- See https://wiki.hypr.land/Configuring/Advanced-and-Cool/Permissions/
--- Please note permission changes here require a Hyprland restart and are not applied on-the-fly
--- for security reasons
 
 -- hl.config({
 --   ecosystem = {
@@ -98,7 +88,7 @@ hl.env("XDG_MENU_PREFIX", "plasma-")
 hl.config({
     general = {
         gaps_in  = 5,
-        gaps_out = 15,
+        gaps_out = 13,
 
         border_size = 2,
 
@@ -107,20 +97,17 @@ hl.config({
             inactive_border = "rgba(595959aa)",
         },
 
-        -- Set to true to enable resizing windows by clicking and dragging on borders and gaps
         resize_on_border = false,
 
-        -- Please see https://wiki.hypr.land/Configuring/Advanced-and-Cool/Tearing/ before you turn this on
         allow_tearing = false,
 
         layout = "dwindle",
     },
 
     decoration = {
-        rounding       = 0,
+        rounding       = 20,
         rounding_power = 2,
 
-        -- Change transparency of focused and unfocused windows
         active_opacity   = 1.0,
         inactive_opacity = 0.9,
 
@@ -150,10 +137,11 @@ hl.curve("linear",         { type = "bezier", points = { {0, 0},       {1, 1}   
 hl.curve("almostLinear",   { type = "bezier", points = { {0.5, 0.5},   {0.75, 1}    } })
 hl.curve("quick",          { type = "bezier", points = { {0.15, 0},    {0.1, 1}     } })
 
--- animations
+-- Animations
 hl.layer_rule({ match = { namespace = "notifications" }, animation = "slide right" })
 hl.layer_rule({ match = { namespace = "waybar" }, animation = "slide top" })
 
+-- Default springs
 hl.curve("easy",           { type = "spring", mass = 1, stiffness = 238.1191, dampening = 24.21279333 })
 
 hl.animation({ leaf = "global",        enabled = true,  speed = 10,   bezier = "default" })
@@ -229,7 +217,7 @@ hl.config({
 
 hl.config({
     input = {
-        kb_layout  = "us",
+        kb_layout  = "tr, us",
         kb_variant = "",
         kb_model   = "",
         kb_options = "",
@@ -237,7 +225,7 @@ hl.config({
 
         follow_mouse = 1,
 
-        sensitivity = 0, -- -1.0 - 1.0, 0 means no modification.
+        sensitivity = 0,
 
         touchpad = {
             natural_scroll = false,
@@ -251,7 +239,6 @@ hl.gesture({
     action = "workspace"
 })
 
--- per-device config
 hl.device({
     name        = "epic-mouse-v1",
     sensitivity = -0.5,
@@ -270,7 +257,7 @@ local closeWindowBind = hl.bind(mainMod .. " + Q", hl.dsp.window.close())
 hl.bind(mainMod .. " + M", hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'"))
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
 hl.bind(mainMod .. " + SPACE", hl.dsp.window.float({ action = "toggle" }))
-hl.bind(mainMod .. " + R", hl.dsp.exec_cmd("pkill wofi || " .. menu))
+hl.bind(mainMod .. " + Z", hl.dsp.exec_cmd("pkill wofi || " .. menu))
 hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
 hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit"))    -- dwindle only
 hl.bind("SUPER + L",      hl.dsp.exec_cmd("loginctl lock-session"))
@@ -284,7 +271,7 @@ hl.bind("Print",             hl.dsp.exec_cmd("$HOME/.local/bin/screenshot.sh are
 hl.bind("SUPER + SHIFT + R", hl.dsp.exec_cmd("~/.local/bin/record.sh full"))
 hl.bind("SUPER + CTRL + R",  hl.dsp.exec_cmd("~/.local/bin/record.sh area"))
 
--- PENCEREYİ TAM EKRAN YAP / GERİ AL
+-- maximize window
 hl.bind("SUPER + F", hl.dsp.window.fullscreen())
 
 -- copy/paste
@@ -335,7 +322,6 @@ hl.bind("XF86AudioPrev",  hl.dsp.exec_cmd("playerctl previous"),   { locked = tr
 ---- WINDOWS AND WORKSPACES ----
 --------------------------------
 
-
 local suppressMaximizeRule = hl.window_rule({
     name  = "suppress-maximize-events",
     match = { class = ".*" },
@@ -359,6 +345,7 @@ hl.window_rule({
     no_focus = true,
 })
 
+-- Layer rules also return a handle.
 -- local overlayLayerRule = hl.layer_rule({
 --     name  = "no-anim-overlay",
 --     match = { namespace = "^my-overlay$" },
@@ -374,3 +361,13 @@ hl.window_rule({
     move  = "20 monitor_h-120",
     float = true,
 })
+
+-- XWayland Resolution Fix
+
+hl.config({
+    xwayland = {
+        force_zero_scaling = true,
+    },
+})
+
+hl.env("GDK_SCALE", "1")

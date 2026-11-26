@@ -47,7 +47,7 @@
     },
     "network": {
     "format-wifi": "\uf1eb on",
-    "format-ethernet": "\uf0e8 connected",
+    "format-ethernet": "\uf0e8 bağlı",
     "format-disconnected": "\uf1eb off",
     "format-disabled": "\uf1eb off",
     "tooltip-format-wifi": "{essid} ({signalStrength}%)",

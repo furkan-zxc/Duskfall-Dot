@@ -115,12 +115,14 @@ window#waybar {
     font-size: 16px;
 }
 
+/* Genel yumuşak geçişler */
 * {
     transition-property: color, background-color, opacity, border-color;
     transition-duration: 0.25s;
     transition-timing-function: ease-in-out;
 }
 
+/* Çalışma alanı butonları: aktif olunca yumuşakça belirsin */
 #workspaces button {
     transition: color 0.25s ease, opacity 0.25s ease;
 }
@@ -128,6 +130,7 @@ window#waybar {
     color: #ffffff;
 }
 
+/* Modüller üzerine gelince hafifçe aydınlansın */
 #pulseaudio, #backlight, #network, #bluetooth,
 #cpu, #temperature, #battery, #clock {
     padding: 0 8px;
@@ -138,6 +141,7 @@ window#waybar {
     background-color: rgba(245, 236, 215, 0.12);
 }
 
+/* Yıldız yavaşça nabız atsın */
 @keyframes pulse {
     from { opacity: 1; }
     to   { opacity: 0.4; }
@@ -146,6 +150,7 @@ window#waybar {
     animation: pulse 1.4s ease-in-out infinite alternate;
 }
 
+/* Pil kritikken yanıp sönsün */
 @keyframes blink {
     to { color: #e05050; }
 }
