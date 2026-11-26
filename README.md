@@ -57,12 +57,14 @@ chmod +x ~/.local/bin/*.sh
 | Shortcut | Action |
 |---|---|
 | `SUPER + T` | Open terminal (Kitty) |
-| `SUPER + R` | Open launcher |
+| `SUPER + Z` | Open launcher |
 | `SUPER + PRTSCR` | Take a screenshot |
 | `SUPER + SPACE` | Toggle floating |
 | `SUPER + SHIFT + R` | Start screen recording |
 | `SUPER + S` | Toggle special workspace |
 | `SUPER + ESC` | Power menu (Wlogout) |
+
+To adjust settings such as screen brightness and volume, you can use the mouse scroll wheel on the icon in the waybar, or try the Fn + F2 / F3 key combinations on your keyboard.
 
 ## Customization
 
