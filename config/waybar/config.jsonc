@@ -3,10 +3,10 @@
     "height": 28,
     "modules-left": ["hyprland/workspaces", "custom/cava", "custom/special"],
     "modules-center": ["hyprland/window"],
-    "modules-right": ["custom/record", "tray", "pulseaudio", "backlight", "bluetooth", "cpu", "temperature", "battery", "clock"],
+    "modules-right": ["custom/record", "pulseaudio", "backlight", "tray", "bluetooth", "cpu", "temperature", "battery", "clock"],
 
     "custom/cava": {
-    "exec": "/home/furkan/.local/bin/cava-waybar.sh",
+    "exec": "~/.local/bin/cava-waybar.sh",
     "format": "{}",
     "tooltip": false
     },
