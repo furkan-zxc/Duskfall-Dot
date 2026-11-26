@@ -60,7 +60,7 @@ install_pkgs \
   hyprland hyprland-guiutils hyprlock hypridle hyprpaper waybar wofi kitty dunst wlogout \
   grim slurp wl-clipboard cliphist wf-recorder cava mpv \
   brightnessctl libnotify-tools pavucontrol blueman wireplumber \
-  NetworkManager-connection-editor jq socat \
+  NetworkManager-connection-editor NetworkManager-applet jq socat \
   xdg-desktop-portal xdg-desktop-portal-gtk xdg-desktop-portal-hyprland xdg-user-dirs \
   qt5ct qt6ct nwg-look adwaita-qt5 adwaita-qt6 \
   fontawesome-fonts symbols-only-nerd-fonts \
@@ -125,6 +125,18 @@ grep -rIl -E "/home/[A-Za-z0-9_.-]+/" \
 # ---------------------------------------------------------------- 4) HELPER SCRIPTS (if missing)
 log "Checking helper scripts (~/.local/bin)"
 BIN="$HOME/.local/bin"
+
+write_if_missing "$BIN/bt-toggle.sh" << 'EOF'
+#!/bin/bash
+# Toggles Bluetooth power (used by the Waybar bluetooth module, left click)
+if bluetoothctl show 2>/dev/null | grep -q "Powered: yes"; then
+  bluetoothctl power off
+else
+  rfkill unblock bluetooth
+  sleep 0.5
+  bluetoothctl power on
+fi
+EOF
 
 write_if_missing "$BIN/osd.sh" << 'EOF'
 #!/bin/bash
@@ -573,5 +585,6 @@ Next steps:
   2) Run 'waypaper' and pick a wallpaper folder (for example ~/Pictures/Wallpapers).
   3) If Waybar shows up twice, make sure hyprland.lua starts it only once.
   4) Autostart should contain: waybar, hyprpaper or waypaper --restore, dunst, hypridle,
-     battery-watch.sh, crash-watch.sh and two "wl-paste --watch cliphist store" lines.
+     nm-applet --indicator, battery-watch.sh, crash-watch.sh and two
+     "wl-paste --watch cliphist store" lines.
 MSG
